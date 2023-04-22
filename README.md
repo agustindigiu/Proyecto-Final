@@ -1,2 +1,3 @@
-# Proyecto Final
-App web con Python para Proyecto Final
+# Proyecto-Pizzeria
+App web para proyecto final
+puto el que lee
