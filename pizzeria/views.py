@@ -8,3 +8,27 @@ TEMPLATE_DIR = (
 
 def index(request):
     return render(request, 'index.html')
+
+def lista_ventas(request):
+    return render(request, 'crud_ventas/lista.html')
+
+def agregar_ventas(request):
+    return render(request, 'crud_ventas/agregar.html')
+
+def actualizar_ventas(request):
+    return render(request, 'crud_ventas/actualizar.html')
+
+def eliminar_ventas(request):
+    return render(request, 'crud_ventas/eliminar.html')
+
+def lista_inventario(request):
+    return render(request, 'crud_inventario/lista.html')
+
+def agregar_inventario(request):
+    return render(request, 'crud_inventario/agregar.html')
+
+def actualizar_inventario(request):
+    return render(request, 'crud_inventario/actualizar.html')
+
+def eliminar_inventario(request):
+    return render(request, 'crud_inventario/eliminar.html')
