@@ -18,13 +18,13 @@ def lista_ventas(request):
 
 def agregar_ventas(request):
     if request.method == 'POST':
-        if request.POST.get('Pedidos') and request.POST.get('Nombre') and request.POST.get('Apellido') and request.POST.get('Correo') and request.POST.get('Telefono'):
+        if request.POST.get('pedido') and request.POST.get('nombre') and request.POST.get('apellido') and request.POST.get('correo') and request.POST.get('celular'):
             vent = Ventas()
-            vent.Pedidos = request.POST.get('Pedidos')
-            vent.Nombre = request.POST.get('Nombre')
-            vent.Apellido = request.POST.get('Apellido')
-            vent.Correo = request.POST.get('Correo')
-            vent.Telefono = request.POST.get('Telefono')
+            vent.pedido = request.POST.get('pedido')
+            vent.nombre = request.POST.get('nombre')
+            vent.apellido = request.POST.get('apellido')
+            vent.correo = request.POST.get('correo')
+            vent.celular = request.POST.get('celular')
             vent.save()
             return redirect('lista_ventas')
     else:

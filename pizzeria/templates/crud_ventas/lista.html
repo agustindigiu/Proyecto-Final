@@ -18,11 +18,11 @@
 
         {% for i in ventas %}
           <tr>
-            <th scope="row">{{ i.Pedidos }}</th>
-            <td>{{ i.Nombre }}</td>
-            <td>{{ i.Apellido }}</td>
-            <td>{{ i.Correo }}</td>
-            <td>{{ i.Telefono }}</td>
+            <th scope="row">{{ i.pedido }}</th>
+            <td>{{ i.nombre }}</td>
+            <td>{{ i.apellido }}</td>
+            <td>{{ i.correo }}</td>
+            <td>{{ i.celular }}</td>
             <td>{{ i.f_registro }}</td>
           </tr>
           {% endfor %}
