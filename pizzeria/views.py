@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
+from django.http import HttpResponse
+from .models import Ventas
 # Create your views here.
 
 TEMPLATE_DIR = (
@@ -10,10 +12,23 @@ def index(request):
     return render(request, 'index.html')
 
 def lista_ventas(request):
-    return render(request, 'crud_ventas/lista.html')
+    sell = Ventas.objects.all()
+    datos = { 'ventas' : sell }
+    return render(request, 'crud_ventas/lista.html', datos)
 
 def agregar_ventas(request):
-    return render(request, 'crud_ventas/agregar.html')
+    if request.method == 'POST':
+        if request.POST.get('Pedidos') and request.POST.get('Nombre') and request.POST.get('Apellido') and request.POST.get('Correo') and request.POST.get('Telefono'):
+            vent = Ventas()
+            vent.Pedidos = request.POST.get('Pedidos')
+            vent.Nombre = request.POST.get('Nombre')
+            vent.Apellido = request.POST.get('Apellido')
+            vent.Correo = request.POST.get('Correo')
+            vent.Telefono = request.POST.get('Telefono')
+            vent.save()
+            return redirect('lista_ventas')
+    else:
+        return render(request, 'crud_ventas/agregar.html')
 
 def actualizar_ventas(request):
     return render(request, 'crud_ventas/actualizar.html')

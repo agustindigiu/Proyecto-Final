@@ -3,5 +3,32 @@
 {% block content %} 
 <div class="right_col" role="main">
     <h1>Lista de Ventas</h1>
+    <table class="table ">
+        <thead>
+          <tr>
+            <th scope="col">Pedido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Fecha de registro</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for i in ventas %}
+          <tr>
+            <th scope="row">{{ i.Pedidos }}</th>
+            <td>{{ i.Nombre }}</td>
+            <td>{{ i.Apellido }}</td>
+            <td>{{ i.Correo }}</td>
+            <td>{{ i.Telefono }}</td>
+            <td>{{ i.f_registro }}</td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      
+      </table>
 </div>
 {% endblock %}
