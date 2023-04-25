@@ -3,7 +3,7 @@
 {% block content %} 
 <div class="right_col" role="main">
     <h1>Actualizar Pedido</h1>
-    <form action="actualizar_ventas" method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
         <div class="form-group row">
             <label for="pedido" class="col-4 col-form-label">Nº Pedido</label> 
@@ -14,9 +14,9 @@
                     <i class="fa fa-search"></i>
                   </div>
                 </div>
-                    <select id="pedido" name="pedido">
+                    <select id="pedido" name="pedido" class="form-control">
                         {% for i in ventas %}                         
-                            <option value="{{i.pedido}}">{{i.pedido}}</option>
+                            <option value="{{i.pedido}}" {% if i.pedido == venta.pedido %} selected {% endif %}>{{i.pedido}}</option>
                         {% endfor %}                        
                     </select>
               </div>
@@ -32,7 +32,7 @@
                   <i class="fa fa-address-card"></i>
                 </div>
               </div> 
-              <input id="nombre" name="nombre" type="text" class="form-control" required="required">
+              <input id="nombre" name="nombre" type="text" class="form-control" required="required" value="{{ venta.nombre }}">
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
                   <i class="fa fa-address-card-o"></i>
                 </div>
               </div> 
-              <input id="apellido" name="apellido" type="text" class="form-control" required="required">
+              <input id="apellido" name="apellido" type="text" class="form-control" required="required" value="{{ venta.apellido }}">
             </div>
           </div>
         </div>
@@ -58,7 +58,7 @@
                   <i class="fa fa-inbox"></i>
                 </div>
               </div> 
-              <input id="correo" name="correo" type="email" class="form-control" required="required">
+              <input id="correo" name="correo" type="email" class="form-control" required="required" value="{{ venta.correo }}">
             </div>
           </div>
         </div>
@@ -71,13 +71,14 @@
                   <i class="fa fa-phone"></i>
                 </div>
               </div> 
-              <input id="celular" name="celular" type="number" class="form-control" required="required">
+              <input id="celular" name="celular" type="number" class="form-control" required="required" value="{{ venta.celular }}">
             </div>
           </div>
         </div> 
         <div class="form-group row">
           <div class="offset-4 col-8">
-            <button name="submit" type="submit" class="btn btn-warning"><i class="fa fa-refresh"></i> Actualizar pedido </button>
+            <button name="back" class="btn btn-primary" onclick="history.back(); return false;"><i class="fa fa-angle-double-left"></i> Volver </button>
+            <button name="submit" type="submit" class="btn btn-warning"><i class="fa fa-refresh"></i> Editar pedido </button>
           </div>
         </div>
       </form>
