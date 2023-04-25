@@ -48,7 +48,16 @@ def actualizar_ventas(request):
     return render(request, 'crud_ventas/actualizar.html', datos)
 
 def eliminar_ventas(request):
-    return render(request, 'crud_ventas/eliminar.html')
+    if request.method == 'POST':
+        if request.POST.get('pedido'):
+            pedido_a_borrar = request.POST.get('pedido')
+            tupla = Ventas.objects.get(pedido = pedido_a_borrar)
+            tupla.delete()
+            return redirect('lista_ventas')
+    else:
+        sell = Ventas.objects.all()
+        datos = { 'ventas' : sell }
+        return render(request, 'crud_ventas/eliminar.html', datos)
 
 def lista_inventario(request):
     inv = Inventario.objects.all()
@@ -79,9 +88,18 @@ def actualizar_inventario(request):
             inv.save()
             return redirect('lista_inventario')
     else:
-        inv = Inventario.objects.all()
-        data = { 'inventario' : inv }
+        invent = Inventario.objects.all()
+        data = { 'inventario' : invent }
     return render(request, 'crud_inventario/actualizar.html', data)
 
 def eliminar_inventario(request):
-    return render(request, 'crud_inventario/eliminar.html')
+    if request.method == 'POST':
+        if request.POST.get('codigo'):
+            codigo_a_borrar = request.POST.get('codigo')
+            tupla = Inventario.objects.get(codigo = codigo_a_borrar)
+            tupla.delete()
+            return redirect('lista_inventario')
+    else:
+        invent = Inventario.objects.all()
+        data = { 'inventario' : invent }
+        return render(request, 'crud_inventario/eliminar.html', data)

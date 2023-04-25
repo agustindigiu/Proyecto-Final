@@ -14,9 +14,9 @@
                   <i class="fa fa-search"></i>
                 </div>
               </div> 
-                <select>
+                <select id="codigo" name="codigo">
                     {% for i in inventario %}
-                        <option value="{{i.codigo}}">{{ i.codigo }}</option>
+                        <option value="{{i.codigo}}">{{i.codigo}}</option>
                     {% endfor %}
                 </select>
             </div>
