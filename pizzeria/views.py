@@ -34,12 +34,17 @@ def agregar_ventas(request):
 def actualizar_ventas(request):
     if request.method == 'POST':
         if request.POST.get('nombre') and request.POST.get('apellido') and request.POST.get('correo') and request.POST.get('celular'):
+            venta_pedido_old = request.POST.get('pedido')
+            venta_old = Ventas()
+            venta_old = Ventas.objects.get(pedido = venta_pedido_old)
+
             vent = Ventas()
             vent.pedido = request.POST.get('pedido')
             vent.nombre = request.POST.get('nombre')
             vent.apellido = request.POST.get('apellido')
             vent.correo = request.POST.get('correo')
             vent.celular = request.POST.get('celular')
+            vent.f_registro = venta_old.f_registro
             vent.save()
             return redirect('lista_ventas')
     else:
@@ -80,11 +85,16 @@ def agregar_inventario(request):
 def actualizar_inventario(request):
     if request.method == 'POST':
         if request.POST.get('producto') and request.POST.get('descripcion') and request.POST.get('unidades'):
+            inv_codigo_old = request.POST.get('codigo')
+            inv_old = Inventario()
+            inv_old = Inventario.objects.get(codigo = inv_codigo_old)
+
             inv = Inventario()
             inv.codigo = request.POST.get('codigo')
             inv.producto = request.POST.get('producto')
             inv.descripcion = request.POST.get('descripcion')
             inv.unidades = request.POST.get('unidades')
+            inv.alta_inventario = inv_old.alta_inventario
             inv.save()
             return redirect('lista_inventario')
     else:
