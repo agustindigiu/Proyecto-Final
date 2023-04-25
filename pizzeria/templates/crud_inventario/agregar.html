@@ -2,6 +2,66 @@
 
 {% block content %} 
 <div class="right_col" role="main">
-    <h1>Agregar Inventario</h1>
+    <h1>Agregar Producto</h1>
+    <form action="agregar_inventario" method="POST">
+        {% csrf_token %}
+        <div class="form-group row">
+          <label for="codigo" class="col-4 col-form-label">Codigo</label> 
+          <div class="col-8">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-barcode"></i>
+                </div>
+              </div> 
+              <input id="codigo" name="codigo" type="number" class="form-control" required="required">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="producto" class="col-4 col-form-label">Producto</label> 
+          <div class="col-8">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-shopping-basket"></i>
+                </div>
+              </div> 
+              <input id="producto" name="producto" type="text" required="required" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="descripcion" class="col-4 col-form-label">Descripcion</label> 
+          <div class="col-8">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-pencil-square-o"></i>
+                </div>
+              </div> 
+              <input id="descripcion" name="descripcion" type="text" class="form-control" required="required">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="unidades" class="col-4 col-form-label">Unidades</label> 
+          <div class="col-8">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-sort-numeric-asc"></i>
+                </div>
+              </div> 
+              <input id="unidades" name="unidades" type="number" class="form-control" required="required">
+            </div>
+          </div>
+        </div> 
+        <div class="form-group row">
+          <div class="offset-4 col-8">
+            <button name="submit" type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Agregar producto </button>
+          </div>
+        </div>
+      </form>
 </div>
 {% endblock %}
