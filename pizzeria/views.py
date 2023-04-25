@@ -32,7 +32,20 @@ def agregar_ventas(request):
         return render(request, 'crud_ventas/agregar.html')
 
 def actualizar_ventas(request):
-    return render(request, 'crud_ventas/actualizar.html')
+    if request.method == 'POST':
+        if request.POST.get('nombre') and request.POST.get('apellido') and request.POST.get('correo') and request.POST.get('celular'):
+            vent = Ventas()
+            vent.pedido = request.POST.get('pedido')
+            vent.nombre = request.POST.get('nombre')
+            vent.apellido = request.POST.get('apellido')
+            vent.correo = request.POST.get('correo')
+            vent.celular = request.POST.get('celular')
+            vent.save()
+            return redirect('lista_ventas')
+    else:
+        sell = Ventas.objects.all()
+        datos = { 'ventas' : sell }
+    return render(request, 'crud_ventas/actualizar.html', datos)
 
 def eliminar_ventas(request):
     return render(request, 'crud_ventas/eliminar.html')
@@ -56,7 +69,19 @@ def agregar_inventario(request):
         return render(request, 'crud_inventario/agregar.html')
 
 def actualizar_inventario(request):
-    return render(request, 'crud_inventario/actualizar.html')
+    if request.method == 'POST':
+        if request.POST.get('producto') and request.POST.get('descripcion') and request.POST.get('unidades'):
+            inv = Inventario()
+            inv.codigo = request.POST.get('codigo')
+            inv.producto = request.POST.get('producto')
+            inv.descripcion = request.POST.get('descripcion')
+            inv.unidades = request.POST.get('unidades')
+            inv.save()
+            return redirect('lista_inventario')
+    else:
+        inv = Inventario.objects.all()
+        data = { 'inventario' : inv }
+    return render(request, 'crud_inventario/actualizar.html', data)
 
 def eliminar_inventario(request):
     return render(request, 'crud_inventario/eliminar.html')
