@@ -1,5 +1,6 @@
 # Proyecto-Pizzeria
 App web para proyecto final
+La versión utilizada de PostgreSQL es 14.7
 Para instalarse el proyecto:
 1. pip install django
 2. python manage.py runserver
