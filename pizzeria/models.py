@@ -12,3 +12,12 @@ class Ventas(models.Model):
     f_registro = models.DateTimeField(auto_now_add=True, null=True)
     class Meta:
         db_table = 'pizzeria_ventas'
+
+class Inventario(models.Model):
+    codigo = models.IntegerField(primary_key=True)
+    producto = models.CharField(max_length=30, null=False)
+    descripcion = models.CharField(max_length=100, null=False)
+    unidades = models.IntegerField(null=False)
+    alta_inventario = models.DateTimeField(auto_now_add=True, null=True)
+    class Meta:
+        db_table = 'pizzeria_inventario'

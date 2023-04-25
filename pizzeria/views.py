@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
 from django.http import HttpResponse
 from .models import Ventas
+from .models import Inventario
 # Create your views here.
 
 TEMPLATE_DIR = (
@@ -37,10 +38,22 @@ def eliminar_ventas(request):
     return render(request, 'crud_ventas/eliminar.html')
 
 def lista_inventario(request):
-    return render(request, 'crud_inventario/lista.html')
+    inv = Inventario.objects.all()
+    data = { 'inventario' : inv }
+    return render(request, 'crud_inventario/lista.html', data)
 
 def agregar_inventario(request):
-    return render(request, 'crud_inventario/agregar.html')
+    if request.method == 'POST':
+        if request.POST.get('codigo') and request.POST.get('producto') and request.POST.get('descripcion') and request.POST.get('unidades'):
+            inv = Inventario()
+            inv.codigo = request.POST.get('codigo')
+            inv.producto = request.POST.get('producto')
+            inv.descripcion = request.POST.get('descripcion')
+            inv.unidades = request.POST.get('unidades')
+            inv.save()
+            return redirect('lista_inventario')
+    else:
+        return render(request, 'crud_inventario/agregar.html')
 
 def actualizar_inventario(request):
     return render(request, 'crud_inventario/actualizar.html')

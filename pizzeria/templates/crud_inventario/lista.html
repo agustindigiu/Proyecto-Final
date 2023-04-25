@@ -6,19 +6,23 @@
     <table class="table ">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Lorem</th>
-            <th scope="col">Ipsum</th>
-            <th scope="col">Dolor</th>
+            <th scope="col">Codigo</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Fecha de registro</th>
           </tr>
         </thead>
         <tbody>
+        {% for i in inventario %}
           <tr>
-            <th scope="row">1</th>
-            <td>Sit</td>
-            <td>Amet</td>
-            <td>Consectetur</td>
+            <th scope="row">{{ i.codigo }}</th>
+            <td>{{ i.producto }}</td>
+            <td>{{ i.descripcion }}</td>
+            <td>{{ i.unidades }}</td>
+            <td>{{ i.alta_inventario }}</td>
           </tr>
+        {% endfor %}
         </tbody>
       
       </table>
