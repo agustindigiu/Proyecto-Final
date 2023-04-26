@@ -3,6 +3,14 @@
 {% block content %} 
 <div class="right_col" role="main">
     <h1>Lista de Inventario</h1>
+    <form action="" method="POST" style="float: left">
+      <div style="display: inline-block;">
+        {% csrf_token %}
+        <input type="text" name="keyword" id="keyword" class="form-control" style="width: 200px; display: inline-block;">
+        <button type="submit" name="search" class="btn btn-success"><i class="fa fa-search"></i></button>
+      </div> 
+    </form>
+    <button name="agregar_inventario" class="btn btn-primary" onclick="window.location.href='agregar_inventario'"><i class="fa fa-plus"></i> Nuevo Producto </button>
     <table class="table ">
         <thead>
           <tr>
@@ -11,6 +19,7 @@
             <th scope="col">Descripcion</th>
             <th scope="col">Cantidad</th>
             <th scope="col">Fecha de registro</th>
+            <th scope="col">Acción</th>
           </tr>
         </thead>
         <tbody>
@@ -21,6 +30,10 @@
             <td>{{ i.descripcion }}</td>
             <td>{{ i.unidades }}</td>
             <td>{{ i.alta_inventario }}</td>
+            <td>
+              <button class="btn btn-warning" title="Modificar" onclick="window.location.href='actualizar_inventario/{{i.codigo}}'"><i class="fa fa-refresh"></i></button>
+              <button class="btn btn-danger" title="Eliminar" onclick="window.location.href='eliminar_inventario/{{i.codigo}}'"><i class="fa fa-trash"></i></button>
+            </td>
           </tr>
         {% endfor %}
         </tbody>

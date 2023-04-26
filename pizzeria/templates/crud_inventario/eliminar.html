@@ -3,7 +3,7 @@
 {% block content %} 
 <div class="right_col" role="main">
     <h1>Eliminar Producto</h1>
-        <form action="eliminar_inventario" method="POST">
+        <form action="" method="POST">
             {% csrf_token %}
             <div class="form-group row">
             <label for="codigo" class="col-4 col-form-label">Nº Codigo</label> 
@@ -14,9 +14,9 @@
                     <i class="fa fa-search"></i>
                     </div>
                 </div> 
-                    <select id="codigo" name="codigo">
+                    <select id="codigo" name="codigo" class="form-control">
                         {% for i in inventario %}
-                            <option value="{{i.codigo}}">{{i.codigo}}</option>
+                            <option value="{{i.codigo}}" {% if i.codigo == producto.codigo %} selected {% endif %}>{{i.codigo}} - {{i.producto}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -25,6 +25,7 @@
 
             <div class="form-group row">
                 <div class="offset-4 col-8">
+                  <button name="back" class="btn btn-primary" onclick="history.back(); return false;"><i class="fa fa-angle-double-left"></i> Volver </button>
                   <button name="submit" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar producto </button>
                 </div>
               </div>
