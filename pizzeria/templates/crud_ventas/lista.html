@@ -1,8 +1,19 @@
 {% extends '../index_master.html' %}
+{% block title %}
+Lista de Ventas
+{% endblock %}
 
 {% block content %} 
 <div class="right_col" role="main">
     <h1>Lista de Ventas</h1>
+    <form action="" method="POST" style="float: left">
+      <div style="display: inline-block;">
+        {% csrf_token %}
+        <input type="text" name="keywords" id="keywords" class="form-control" style="width: 200px; display: inline-block;">
+        <button type="submit" name="search" class="btn btn-success"><i class="fa fa-search"></i></button>
+      </div> 
+    </form>
+    <button name="agregar_ventas" class="btn btn-primary" onclick="window.location.href='agregar_ventas'"><i class="fa fa-plus"></i> Nuevo Pedido </button>
     <table class="table ">
         <thead>
           <tr>
@@ -12,6 +23,7 @@
             <th scope="col">Correo</th>
             <th scope="col">Telefono</th>
             <th scope="col">Fecha de registro</th>
+            <th scope="col">Acción</th>
           </tr>
         </thead>
         <tbody>
@@ -24,6 +36,10 @@
             <td>{{ i.correo }}</td>
             <td>{{ i.celular }}</td>
             <td>{{ i.f_registro }}</td>
+            <td>
+              <button class="btn btn-warning" title="Modificar"><i class="fa fa-refresh" onclick="window.location.href='actualizar_ventas/{{i.pedido}}'"></i></button>
+              <button class="btn btn-danger" title="Eliminar"><i class="fa fa-trash" onclick="window.location.href='eliminar_ventas/{{i.pedido}}'"></i></button>
+            </td>
           </tr>
           {% endfor %}
 
